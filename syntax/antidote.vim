@@ -22,9 +22,14 @@ syn region antidoteBundle start="^\s*\zs'" skip="\v%(\\\\|\\')" end="'" oneline
   \ skipwhite nextgroup=antidoteAnnotation
 
 syn match antidoteAnnotation "kind:" contained nextgroup=antidoteKind
+syn match antidoteAnnotation "branch:" contained nextgroup=antidoteBranch
 
 syn match antidoteKind "\v%(zsh|fpath|path|clone|defer|autoload)>" contained
   \ skipwhite nextgroup=antidoteAnnotation
+
+" Git branch names are a bit stricter than this
+syn match antidoteBranch "[a-zA-Z0-9._/-]+\ze\s" contained skipwhite
+  \ nextgroup=antidoteAnnotation
 
 syn match antidoteComment "#.*$" contains=@Spell  " See `spell-syntax`
 
