@@ -15,15 +15,24 @@ syn case match
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 syn region antidoteBundle start="\v^\s*\zs%(\\\\|\\\s|\S)" skip="\v%(\\\\|\\\s)"
-  \ end="\v%(\ze\s|$)"
+  \ end="\v%(\ze\s|$)" skipwhite nextgroup=antidoteAnnotation
 syn region antidoteBundle start='^\s*\zs"' skip='\v%(\\\\|\\")' end='"' oneline
+  \ skipwhite nextgroup=antidoteAnnotation
 syn region antidoteBundle start="^\s*\zs'" skip="\v%(\\\\|\\')" end="'" oneline
+  \ skipwhite nextgroup=antidoteAnnotation
+
+syn match antidoteAnnotation "kind:" contained nextgroup=antidoteKind
+
+syn match antidoteKind "\v%(zsh|fpath|path|clone|defer|autoload)>" contained
+  \ skipwhite nextgroup=antidoteAnnotation
 
 syn match antidoteComment "#.*$" contains=@Spell  " See `spell-syntax`
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Default highlights
 hi def link antidoteBundle String
+hi def link antidoteAnnotation Type
+hi def link antidoteKind Identifier
 hi def link antidoteComment Comment
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
