@@ -14,10 +14,16 @@ syn case match
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+syn region antidoteBundle start="\v^\s*\zs%(\\\\|\\\s|\S)" skip="\v%(\\\\|\\\s)"
+  \ end="\v%(\ze\s|$)"
+syn region antidoteBundle start='^\s*\zs"' skip='\v%(\\\\|\\")' end='"' oneline
+syn region antidoteBundle start="^\s*\zs'" skip="\v%(\\\\|\\')" end="'" oneline
+
 syn match antidoteComment "#.*$" contains=@Spell  " See `spell-syntax`
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Default highlights
+hi def link antidoteBundle String
 hi def link antidoteComment Comment
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
