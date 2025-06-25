@@ -28,6 +28,8 @@ syn match antidoteKind "\v%(zsh|fpath|path|clone|defer|autoload)>" contained
 
 syn match antidoteComment "#.*$" contains=@Spell  " See `spell-syntax`
 
+syn sync minlines=50
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Default highlights
 hi def link antidoteBundle String
