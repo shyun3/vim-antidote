@@ -8,7 +8,7 @@ Use your favorite plugin manager!
 
 Example for [Lazy](https://lazy.folke.io/):
 ```lua
-"shyun3/vim-antidote"
+{ "shyun3/vim-antidote", ft = "antidote" }
 ```
 
 ## License
