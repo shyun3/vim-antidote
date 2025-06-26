@@ -23,7 +23,8 @@ syn region antidoteBundle start="^\s*\zs'" skip="\v%(\\\\|\\')" end="'"
 
 syn match antidoteAnnotation "kind:" contained nextgroup=antidoteKind
 syn match antidoteAnnotation "branch:" contained nextgroup=antidoteBranch
-syn match antidoteAnnotation "path:" contained nextgroup=antidotePath
+syn match antidoteAnnotation "\v%(path|autoload):" contained
+  \ nextgroup=antidotePath
 syn match antidoteAnnotation "\v%(conditional|pre|post):" contained
   \ nextgroup=antidoteFunction
 
