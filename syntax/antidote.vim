@@ -24,6 +24,8 @@ syn region antidoteBundle start="^\s*\zs'" skip="\v%(\\\\|\\')" end="'"
 syn match antidoteAnnotation "kind:" contained nextgroup=antidoteKind
 syn match antidoteAnnotation "branch:" contained nextgroup=antidoteBranch
 syn match antidoteAnnotation "path:" contained nextgroup=antidotePath
+syn match antidoteAnnotation "\v%(conditional|pre|post):" contained
+  \ nextgroup=antidoteFunction
 
 syn match antidoteKind "\v%(zsh|fpath|path|clone|defer|autoload)>" contained
   \ skipwhite nextgroup=antidoteAnnotation
@@ -39,6 +41,10 @@ syn region antidotePath start='"' skip='\v%(\\\\|\\")' end='"'
 syn region antidotePath start="'" skip="\v%(\\\\|\\')" end="'"
   \ contained skipwhite nextgroup=antidoteAnnotation
 
+" Sensible zsh function name
+syn match antidoteFunction "[a-zA-Z_][a-zA-Z0-9_-]*" contained skipwhite
+  \ nextgroup=antidoteAnnotation
+
 syn match antidoteComment "#.*$" contains=@Spell  " See `spell-syntax`
 
 syn sync minlines=50
@@ -49,6 +55,7 @@ hi def link antidoteBundle antidotePath
 hi def link antidoteAnnotation Type
 hi def link antidoteKind Identifier
 hi def link antidotePath String
+hi def link antidoteFunction Function
 hi def link antidoteComment Comment
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
