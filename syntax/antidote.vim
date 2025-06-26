@@ -10,12 +10,12 @@ endif
 let s:cpo_save = &cpo
 set cpo&vim
 
-syn case match
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-syn region antidoteBundle start="\v^\s*\zs%(\\\\|\\\s|\S)" skip="\v%(\\\\|\\\s)"
-  \ end="\v%(\ze\s|$)" skipwhite nextgroup=antidoteAnnotation
+syn case match
+
+syn match antidoteBundle "\v^\s*\zs%(\\\\|\\\s|\S)+" skipwhite
+  \ nextgroup=antidoteAnnotation
 syn region antidoteBundle start='^\s*\zs"' skip='\v%(\\\\|\\")' end='"'
   \ skipwhite nextgroup=antidoteAnnotation
 syn region antidoteBundle start="^\s*\zs'" skip="\v%(\\\\|\\')" end="'"
@@ -35,8 +35,8 @@ syn match antidoteKind "\v%(zsh|fpath|path|clone|defer|autoload)>" contained
 syn match antidoteBranch "[a-zA-Z0-9._/-]+" contained skipwhite
   \ nextgroup=antidoteAnnotation
 
-syn region antidotePath start="\v%(\\\\|\\\s|\S)" skip="\v%(\\\\|\\\s)"
-  \ end="\v%(\ze\s|$)" contained skipwhite nextgroup=antidoteAnnotation
+syn match antidotePath "\v%(\\\\|\\\s|\S)+" contained skipwhite
+  \ nextgroup=antidoteAnnotation
 syn region antidotePath start='"' skip='\v%(\\\\|\\")' end='"'
   \ contained skipwhite nextgroup=antidoteAnnotation
 syn region antidotePath start="'" skip="\v%(\\\\|\\')" end="'"
@@ -50,9 +50,7 @@ syn match antidoteComment "#.*$" contains=@Spell  " See `spell-syntax`
 
 syn sync minlines=50
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Default highlights
-hi def link antidoteBundle antidotePath
+hi def link antidoteBundle Statement
 hi def link antidoteAnnotation Type
 hi def link antidoteKind Identifier
 hi def link antidotePath String
